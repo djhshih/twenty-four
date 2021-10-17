@@ -1,4 +1,4 @@
-# Game of 24
+# 24 Game
 
 Find solutions to the [24 game][1].
 
