@@ -96,13 +96,13 @@ def main(numbers, target=24):
 
 if __name__ == '__main__':
 
-    pr = argparse.ArgumentParser('Solve the game of 24')
+    pr = argparse.ArgumentParser('Solve the 24 game')
 
     pr.add_argument('numbers', metavar='numbers', type=int, nargs='+',
-        help='numbers to solve for the game of 24')
+        help='numbers to solve for the 24 game')
 
     pr.add_argument('--target', type=int, default=24,
-        help='change target value')
+        help='target value [default: 24]')
 
     argv = pr.parse_args()
 
