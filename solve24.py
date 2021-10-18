@@ -53,7 +53,12 @@ def operate(op, x, y):
 
 
 # Given a list of leaves ys, generate a list of all possible trees ts
-def enumerate(ys, ts):
+def enumerate_trees(ys):
+    ts = []
+    enumerate_helper(ys, ts)
+    return ts
+
+def enumerate_helper(ys, ts):
 
     if len(ys) == 1:
         ts.append(ys[0])
@@ -64,7 +69,8 @@ def enumerate(ys, ts):
             y = etree(values[0], values[1], op)
             ys_new = [y for y in ys if not y in values]
             ys_new.append(y)
-            enumerate(ys_new, ts)
+            enumerate_helper(ys_new, ts)
+
 
 # Find operations on numbers xs that produce the target
 def solve_for_target(xs, target):
@@ -72,17 +78,15 @@ def solve_for_target(xs, target):
     # initialize leaves
     ys = [eleaf(x) for x in xs]
 
-    # generate all possible trees
-    ts = []
-    enumerate(ys, ts)
-
+    # generate all possible trees and 
     # identify trees that evaluate to the target value
     solutions = []
-    for tree in ts:
+    for tree in enumerate_trees(ys):
         if tree.evaluate() == target:
             solutions.append(tree)
 
     return solutions
+
 
 # Print the solutions if any
 def main(numbers, target=24):
@@ -107,4 +111,4 @@ if __name__ == '__main__':
     argv = pr.parse_args()
 
     main(argv.numbers, argv.target)
-    
+
